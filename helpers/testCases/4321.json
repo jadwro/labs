@@ -1,0 +1,9 @@
+{
+  "tcId": 4321,
+  "testTitle": "Login with wrong password is not possible",
+  "testSteps": [
+    "GIVEN I am on the login page",
+    "WHEN I enter incorrect password (student:xxx)",
+    "THEN I can see error message with text 'Your password is invalid!'"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tcId": 1234,
+  "testTitle": "Successful login",
+  "testSteps": [
+    "GIVEN I am on the login page",
+    "WHEN I enter correct login credentials (student:Password123)",
+    "AND I click submit button",
+    "THEN I should be logged in successfully"
+  ]
+}
