@@ -3,5 +3,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-.env
 /helpers/testCaseCreator/draft.ts
+.env
+package-lock.json
