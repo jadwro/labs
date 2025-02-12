@@ -1,20 +1,29 @@
-import { Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
+import { FullResult, Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 import { TestCase as TC } from './Types';
 import fs from 'fs';
 import { JiraApiHandler } from './JiraApiHandler';
 
 class LivingDocumentation implements Reporter {
-  private jiraApiHandler = new JiraApiHandler();
-
+  private pendingOperations: Promise<any>[] = [];
+  
   private testCase: TC = {
     tcId: '',
     testTitle: '',
     testSteps: []
   };
-
+  
   async onTestEnd(test: TestCase, result: TestResult) {
+    const jiraApiHandler = new JiraApiHandler();
+
     this.createTc(test, result);
-    await this.saveOrUpdateTcInJira(this.testCase);
+    
+    const operation = jiraApiHandler.createOrUpdateJiraTestCase(this.testCase);
+    this.pendingOperations.push(operation);
+  }
+
+  async onEnd(result: FullResult) {
+    await Promise.all(this.pendingOperations);
+    console.log('All Jira operations completed.');
   }
 
   private createTc(test: TestCase, result: TestResult) {
@@ -30,10 +39,6 @@ class LivingDocumentation implements Reporter {
     await fs.promises.writeFile(`./helpers/testCases/${this.testCase.tcId}.json`, JSON.stringify(this.testCase, null, 2), {
       flag: 'w'
     });
-  }
-
-  private async saveOrUpdateTcInJira(testCase: TC) {
-    await this.jiraApiHandler.createOrUpdateJiraTestCase(testCase);
   }
 }
 
