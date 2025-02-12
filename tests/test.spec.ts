@@ -6,7 +6,7 @@ const Login = 'student';
 const CorrectPsw = 'Password123';
 const IncorrectPsw = 'xxx';
 
-test('Successful login', 
+test('Successful login 2', 
   { 
     annotation: { type: 'tcId', description: 'SCRUM-6' }
   }, 
@@ -31,7 +31,7 @@ test('Successful login',
     });
 });
 
-test('Login with wrong password is not possible', 
+test('Login with wrong password is not possible 2', 
   { 
     annotation: { type: 'tcId', description: 'SCRUM-5' }
   }, 
