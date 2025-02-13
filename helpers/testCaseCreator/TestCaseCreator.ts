@@ -1,17 +1,10 @@
 import { FullResult, Reporter, TestCase, TestResult, TestStep } from '@playwright/test/reporter';
 import { TestCase as TC } from './Types';
-import fs from 'fs';
 import { JiraApiHandler } from './JiraApiHandler';
 
 class LivingDocumentation implements Reporter {
   private pendingOperations: Promise<any>[] = [];
-  
-  // private testCase: TC = {
-  //   tcId: undefined,
-  //   testTitle: '',
-  //   testSteps: []
-  // };
-  
+   
   async onTestEnd(test: TestCase, result: TestResult) {
     const createdTestCase = this.createTc(test, result);
     
@@ -46,13 +39,6 @@ class LivingDocumentation implements Reporter {
       testTitle: test.title,
       testSteps: testSteps
     }
-
-    // this.testCase.tcId = tcId;
-    // this.testCase.testTitle = test.title;
-    // this.testCase.testSteps = 
-    //   result.steps
-    //     .filter(step => !step.title.includes('Hooks'))
-    //     .map(step => step.title);
   }
 }
 
