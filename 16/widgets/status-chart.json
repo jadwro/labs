@@ -1,1 +1,0 @@
-[{"uid":"7f5d90ff134aab8","name":"Successful login","time":{"start":1739441575637,"stop":1739441577148,"duration":1511},"status":"passed","severity":"normal"},{"uid":"54220e9b6ab7f25d","name":"Login with wrong password is not possible","time":{"start":1739441579890,"stop":1739441580378,"duration":488},"status":"passed","severity":"normal"}]
