@@ -62,7 +62,7 @@ test('New test - fail',
   { 
     annotation: [
       { type: 'testCaseId', description: 'SCRUM-13' },
-      { type: 'updateTestCase', description: 'true' }
+      { type: 'updateTestCase', description: 'false' }
     ]
   }, 
   async ({ page }) => {
@@ -72,8 +72,8 @@ test('New test - fail',
       await page.goto('https://practicetestautomation.com/practice-test-login/');
     });
     
-    await test.step(`WHEN I enter incorrect password (${Login} : ${CorrectPsw})`, async () => {
-      await loginPage.enterLoginData(Login, CorrectPsw);
+    await test.step(`WHEN I enter incorrect password (${Login} : ${IncorrectPsw})`, async () => {
+      await loginPage.enterLoginData(Login, IncorrectPsw);
       await loginPage.clickSubmitBtn();
     });
     
