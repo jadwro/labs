@@ -4,4 +4,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /helpers/testCaseCreator/draft.ts
+/allure-results
+/allure-report
+/.allure
 .env
