@@ -6,18 +6,20 @@ import { JiraApiHandler } from './JiraApiHandler';
 class LivingDocumentation implements Reporter {
   private pendingOperations: Promise<any>[] = [];
   
-  private testCase: TC = {
-    tcId: '',
-    testTitle: '',
-    testSteps: []
-  };
+  // private testCase: TC = {
+  //   tcId: undefined,
+  //   testTitle: '',
+  //   testSteps: []
+  // };
   
   async onTestEnd(test: TestCase, result: TestResult) {
-    const jiraApiHandler = new JiraApiHandler();
-
-    this.createTc(test, result);
+    const createdTestCase = this.createTc(test, result);
     
-    const operation = jiraApiHandler.createOrUpdateJiraTestCase(this.testCase);
+    if(!createdTestCase) return;
+
+    const jiraApiHandler = new JiraApiHandler();
+    
+    const operation = jiraApiHandler.createOrUpdateJiraTestCase(createdTestCase);
     this.pendingOperations.push(operation);
   }
 
@@ -26,19 +28,31 @@ class LivingDocumentation implements Reporter {
     console.log('All Jira operations completed.');
   }
 
-  private createTc(test: TestCase, result: TestResult) {
-    this.testCase.tcId = test.annotations.filter(ann => ann.type === 'tcId')[0].description!!;
-    this.testCase.testTitle = test.title;
-    this.testCase.testSteps = 
+  private createTc(test: TestCase, result: TestResult): TC | void {
+    const tcId = test.annotations.filter(ann => ann.type === 'testCaseId')[0]?.description;
+    const shouldBeUpdated = test.annotations.filter(ann => ann.type === 'updateTestCase')[0]?.description;
+
+    if(!shouldBeUpdated || shouldBeUpdated === 'false') {
+      return;
+    }
+
+    const testSteps = 
       result.steps
         .filter(step => !step.title.includes('Hooks'))
         .map(step => step.title);
-  }
 
-  private async saveTcToFile() {
-    await fs.promises.writeFile(`./helpers/testCases/${this.testCase.tcId}.json`, JSON.stringify(this.testCase, null, 2), {
-      flag: 'w'
-    });
+    return {
+      tcId: tcId,
+      testTitle: test.title,
+      testSteps: testSteps
+    }
+
+    // this.testCase.tcId = tcId;
+    // this.testCase.testTitle = test.title;
+    // this.testCase.testSteps = 
+    //   result.steps
+    //     .filter(step => !step.title.includes('Hooks'))
+    //     .map(step => step.title);
   }
 }
 

@@ -8,6 +8,8 @@ export class JiraApiHandler {
   constructor() {}
 
   async createOrUpdateJiraTestCase(testCase: TestCase) {
+    if(!testCase.tcId) return;
+    
     await this.getIssueDetails(testCase.tcId);
 
     if(this.isTestCaseAlreadyCreated()) {      

@@ -1,5 +1,5 @@
 export type TestCase = {
-  tcId: string,
+  tcId: string | undefined,
   testTitle: string,
   testSteps: string[]
 }

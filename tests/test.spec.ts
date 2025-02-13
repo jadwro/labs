@@ -8,7 +8,10 @@ const IncorrectPsw = 'xxx';
 
 test('Successful login', 
   { 
-    annotation: { type: 'tcId', description: 'SCRUM-6' }
+    annotation: [
+      { type: 'tcId', description: 'SCRUM-9' },
+      { type: 'update', description: 'false' }
+    ]
   }, 
   async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -33,7 +36,10 @@ test('Successful login',
 
 test('Login with wrong password is not possible', 
   { 
-    annotation: { type: 'tcId', description: 'SCRUM-5' }
+    annotation: [
+      { type: 'tcId', description: 'SCRUM-10' },
+      { type: 'update', description: 'false' }
+    ]
   }, 
   async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -52,9 +58,12 @@ test('Login with wrong password is not possible',
     });
 });
 
-test('News test - fail', 
+test('New test - fail', 
   { 
-    annotation: { type: 'tcId', description: 'xxx' }
+    annotation: [
+      { type: 'testCaseId', description: 'SCRUM-13' },
+      { type: 'updateTestCase', description: 'true' }
+    ]
   }, 
   async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -64,7 +73,7 @@ test('News test - fail',
     });
     
     await test.step(`WHEN I enter incorrect password (${Login} : ${CorrectPsw})`, async () => {
-      await loginPage.enterLoginData(Login, IncorrectPsw);
+      await loginPage.enterLoginData(Login, CorrectPsw);
       await loginPage.clickSubmitBtn();
     });
     
