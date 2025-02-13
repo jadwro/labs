@@ -9,6 +9,7 @@ export default defineConfig({
   reporter: [
     ['list'],
     ['allure-playwright'],
+    ['html'],
     ['./helpers/testCaseCreator/TestCaseCreator.ts'],
   ],
   use: {
