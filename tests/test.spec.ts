@@ -51,3 +51,24 @@ test('Login with wrong password is not possible',
       await loginPage.verifyErrorMessage(loginPage.wrongPasswordMessage);
     });
 });
+
+test('News test - fail', 
+  { 
+    annotation: { type: 'tcId', description: 'xxx' }
+  }, 
+  async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await test.step('GIVEN I am on the login page', async () => {
+      await page.goto('https://practicetestautomation.com/practice-test-login/');
+    });
+    
+    await test.step(`WHEN I enter incorrect password (${Login} : ${CorrectPsw})`, async () => {
+      await loginPage.enterLoginData(Login, IncorrectPsw);
+      await loginPage.clickSubmitBtn();
+    });
+    
+    await test.step(`THEN I can see error message with text '${loginPage.wrongPasswordMessage}'`, async () => {
+      await loginPage.verifyErrorMessage(loginPage.wrongPasswordMessage);
+    });
+});
