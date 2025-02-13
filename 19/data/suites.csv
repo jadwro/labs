@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Feb 13 11:20:41 GMT 2025","Thu Feb 13 11:20:41 GMT 2025","656","chromium","test.spec.ts","","","","Login with wrong password is not possible",""
+"passed","Thu Feb 13 11:20:39 GMT 2025","Thu Feb 13 11:20:41 GMT 2025","1410","chromium","test.spec.ts","","","","Successful login",""
+"failed","Thu Feb 13 11:20:54 GMT 2025","Thu Feb 13 11:21:00 GMT 2025","5877","chromium","test.spec.ts","","","","New test - fail",""
