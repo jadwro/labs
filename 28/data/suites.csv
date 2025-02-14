@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Feb 14 11:55:57 GMT 2025","Fri Feb 14 11:55:58 GMT 2025","991","chromium","","","","","Successful login",""
+"passed","Fri Feb 14 11:55:58 GMT 2025","Fri Feb 14 11:55:59 GMT 2025","739","chromium","","","","","Login with wrong password is not possible",""
+"failed","Fri Feb 14 11:55:59 GMT 2025","Fri Feb 14 11:56:05 GMT 2025","5847","chromium","","","","","New test - should fail",""
