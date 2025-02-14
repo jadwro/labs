@@ -58,3 +58,27 @@ test('Login with wrong password is not possible',
     });
 });
 
+test('New test', 
+  { 
+    annotation: [
+      { type: 'testCaseId', description: 'xxx' },
+      { type: 'updateTestCase', description: 'true' }
+    ]
+  }, 
+  async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await test.step('GIVEN I am on the login page', async () => {
+      await page.goto('https://practicetestautomation.com/practice-test-login/');
+    });
+    
+    await test.step(`WHEN I enter incorrect password (${Login} : ${IncorrectPsw})`, async () => {
+      await loginPage.enterLoginData(Login, IncorrectPsw);
+      await loginPage.clickSubmitBtn();
+    });
+    
+    await test.step(`THEN I can see error message with text '${loginPage.wrongPasswordMessage}'`, async () => {
+      await loginPage.verifyErrorMessage(loginPage.wrongPasswordMessage);
+    });
+});
+
