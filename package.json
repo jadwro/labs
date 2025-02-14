@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint -c tslint.json src/**/*.ts",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "allure": "npx allure generate ./allure-results -o ./allure-report && npx allure open ./allure-report/awesome"
   },
   "keywords": [],
   "author": "",

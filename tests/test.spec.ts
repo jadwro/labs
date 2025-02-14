@@ -58,11 +58,11 @@ test('Login with wrong password is not possible',
     });
 });
 
-test('New test', 
+test('New test - should fail', 
   { 
     annotation: [
-      { type: 'testCaseId', description: 'xxx' },
-      { type: 'updateTestCase', description: 'true' }
+      { type: 'testCaseId', description: 'SCRUM-15' },
+      { type: 'updateTestCase', description: 'false' }
     ]
   }, 
   async ({ page }) => {
@@ -72,8 +72,8 @@ test('New test',
       await page.goto('https://practicetestautomation.com/practice-test-login/');
     });
     
-    await test.step(`WHEN I enter incorrect password (${Login} : ${IncorrectPsw})`, async () => {
-      await loginPage.enterLoginData(Login, IncorrectPsw);
+    await test.step(`WHEN I entergfdgdf incorrect password (${Login} : ${CorrectPsw})`, async () => {
+      await loginPage.enterLoginData(Login, CorrectPsw);
       await loginPage.clickSubmitBtn();
     });
     

@@ -8,7 +8,11 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: [
     ['list'],
-    ['allure-playwright'],
+    ['allure-playwright', { 
+      detail: true, 
+      suiteTitle: false,
+      disableWebdriverScreenshotsReporting: false 
+    }],
     ['html'],
     ['./helpers/testCaseCreator/TestCaseCreator.ts'],
   ],
