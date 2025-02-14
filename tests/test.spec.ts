@@ -62,7 +62,7 @@ test('New test',
   { 
     annotation: [
       { type: 'testCaseId', description: 'xxx' },
-      { type: 'updateTestCase', description: 'false' }
+      { type: 'updateTestCase', description: 'true' }
     ]
   }, 
   async ({ page }) => {
