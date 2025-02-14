@@ -58,10 +58,10 @@ test('Login with wrong password is not possible',
     });
 });
 
-test('New test - fail', 
+test('New test', 
   { 
     annotation: [
-      { type: 'testCaseId', description: 'SCRUM-13' },
+      { type: 'testCaseId', description: 'xxx' },
       { type: 'updateTestCase', description: 'false' }
     ]
   }, 
